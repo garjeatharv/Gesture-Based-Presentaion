@@ -124,5 +124,6 @@ while True:
     cv2.imshow("Slides",imgCurrent)
     cv2.imshow("Image",img)
     key = cv2.waitKey(1)
+    # Press 'Q' letter to Quit the program
     if key == ord('q'):
         break
