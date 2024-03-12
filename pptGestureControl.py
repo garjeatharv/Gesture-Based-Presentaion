@@ -7,7 +7,7 @@ import numpy as np
 width, height = int(1280),int(720)
 folderPath = "D:\VS CODE\Python\Gesture PPT\Presentation"
 
-#cam setup
+#camera setup
 cap = cv2.VideoCapture(0)
 cap.set(3,width)
 cap.set(4,height)
@@ -57,7 +57,7 @@ while True:
 
         if cy<= gestureThreshold: #if hand is above face
             annotationStart = False
-            #gesture 1- left
+            #gesture 1- Previous Slide (Thumb emoji)
             if fingures == [1,0,0,0,0]:
                 print("Left")
                 annotationStart = False
@@ -67,7 +67,7 @@ while True:
                     annotationNumber = 0
                     imgNumber-=1
             
-            #gesture 2- right
+            #gesture 2- Right Slide (Pinky fingure out)
             if fingures == [0,0,0,0,1]:
                 print("Right")
                 annotationStart = False
@@ -77,12 +77,12 @@ while True:
                     annotationNumber = 0
                     imgNumber+=1
        
-        #Gesture 3 - Show Pointer
+        #Gesture 3 - Show Pointer (Index fingure and Middle fingure up)
         if fingures == [0,1,1,0,0]:
             cv2.circle(imgCurrent, indexFingure,12,(0,0,255),cv2.FILLED)
             annotationStart = False
 
-        #Gesture 4 - Draw Pointer
+        #Gesture 4 - Draw Pointer (Index Fingure up)
         if fingures == [0,1,0,0,0]:
             if annotationStart is False:
                 annotationStart = True
@@ -93,7 +93,7 @@ while True:
         else:
             annotationStart = False
 
-        #Gesture 5 - Erase
+        #Gesture 5 - Erase (Index fingure, Middle Fingure and Ring fingure up)
         if fingures == [0,1,1,1,0]:
             if annotations:
                 if annotationNumber>=0:
@@ -126,6 +126,3 @@ while True:
     key = cv2.waitKey(1)
     if key == ord('q'):
         break
-
-
-# https://www.youtube.com/watch?v=CKmAZss-T5Y
